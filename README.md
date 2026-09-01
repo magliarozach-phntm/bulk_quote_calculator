@@ -4,19 +4,13 @@ A desktop Python application for importing quote data from Excel, validating eac
 
 This project demonstrates practical business-process automation using Python, Tkinter, `openpyxl`, JSON configuration, automated testing with `pytest`, and Windows packaging with PyInstaller.
 
-## Screenshots
+## Screenshot
 
 ### Desktop Application
 
 ![Bulk Quote Calculator GUI](assets/gui.png)
 
-### Generated Results
 
-![Excel Results](assets/results.png)
-
-### Validation Errors
-
-![Excel Error Reporting](assets/errors.png)
 
 ## Features
 
