@@ -8,7 +8,7 @@ This project demonstrates practical business-process automation using Python, Tk
 
 ### Desktop Application
 
-![Bulk Quote Calculator GUI](assets/gui.png)
+![Bulk Quote Calculator GUI](assets/GUI.png)
 
 
 
@@ -181,9 +181,7 @@ bulk_quote_calculator/
 │   └── test_process_quotes.py
 │
 ├── assets/
-│   ├── gui.png
-│   ├── results.png
-│   └── errors.png
+│   └── GUI.png
 │
 ├── sample_input.xlsx
 ├── requirements.txt
@@ -316,6 +314,7 @@ Tests cover:
 - End-to-end Excel input/output processing
 - Results workbook creation
 - Errors worksheet creation
+- Successful processing when every input row is valid
 
 The integration test creates temporary Excel workbooks and verifies the complete application pipeline.
 

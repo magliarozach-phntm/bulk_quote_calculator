@@ -1,0 +1,6 @@
+{
+  "minimum_markup": 0,
+  "maximum_markup": 100,
+  "currency": "USD",
+  "output_filename": "quote_results.xlsx"
+}

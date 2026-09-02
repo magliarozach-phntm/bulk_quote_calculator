@@ -79,12 +79,16 @@ def write_results(filename, results, errors):
         cell.font = Font(bold=True)
         cell.alignment = Alignment(horizontal='center')
     
-    for cell in errors_sheet[1]:
-        cell.font = Font(bold=True)
-        cell.alignment = Alignment(horizontal='center')
-        
     results_sheet.freeze_panes = results_sheet['A2']
-    errors_sheet.freeze_panes = errors_sheet['A2']
+
+    if errors_sheet is not None:
+        for cell in errors_sheet[1]:
+            cell.font = Font(bold=True)
+            cell.alignment = Alignment(horizontal='center')
+
+        errors_sheet.freeze_panes = errors_sheet['A2']
+        errors_sheet.column_dimensions['A'].width = 15
+        errors_sheet.column_dimensions['B'].width = 150
     
     for row in range(2, results_sheet.max_row + 1):
         results_sheet.cell(row=row, column=3).number_format = '$0.00'
@@ -110,9 +114,6 @@ def write_results(filename, results, errors):
     for column, width in column_widths.items():
         results_sheet.column_dimensions[column].width = width
         
-    errors_sheet.column_dimensions['A'].width = 15
-    errors_sheet.column_dimensions['B'].width = 150
-    
     if results:
         table_range = f"A1:H{results_sheet.max_row}"
         

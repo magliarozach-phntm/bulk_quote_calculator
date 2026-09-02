@@ -74,3 +74,30 @@ def test_process_quotes_end_to_end(tmp_path):
     assert "Unit cost must be non-negative." in error_message
     assert "Shipping cost must be non-negative." in error_message
     assert "Markup must be between 0 and 100." in error_message
+
+
+def test_process_quotes_with_all_valid_rows_omits_errors_sheet(tmp_path):
+    input_file = tmp_path / "valid_input.xlsx"
+    output_file = tmp_path / "valid_output.xlsx"
+
+    workbook = Workbook()
+    sheet = workbook.active
+    sheet.append([
+        "SKU",
+        "Quantity",
+        "Unit Cost",
+        "Shipping Cost",
+        "Markup"
+    ])
+    sheet.append(["GOOD001", 500, 4.25, 350, 20])
+    sheet.append(["GOOD002", 1000, 3.50, 500, 25])
+    workbook.save(input_file)
+
+    summary = process_quotes(str(input_file), str(output_file))
+
+    assert summary == {"successful": 2, "errors": 0}
+    assert output_file.exists()
+
+    result_workbook = load_workbook(output_file)
+    assert result_workbook.sheetnames == ["Results"]
+    assert result_workbook["Results"].max_row == 3
